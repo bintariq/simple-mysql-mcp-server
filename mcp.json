@@ -5,6 +5,7 @@
     "language": "python",
     "host": "http://localhost:8081",
     "entry": "main.py",
+    "type": "query",
     "keywords": ["mysql", "mcp", "copilot", "sql", "fastapi"],
     "version": "0.1.0"
   }

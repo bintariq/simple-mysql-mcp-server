@@ -19,7 +19,8 @@ app = FastAPI()
 
 class QueryRequest(BaseModel):
     sql: str
-
+    params: dict = None  # Optional parameters for binding
+    
 @app.post("/query")
 async def run_query(request: QueryRequest):
     DANGEROUS_KEYWORDS = ["DROP", "DELETE", "TRUNCATE", "ALTER", "UPDATE", "RENAME", "CREATE"]
@@ -35,7 +36,8 @@ async def run_query(request: QueryRequest):
     try:
         start = time.time()
         with engine.connect() as conn:
-            result = conn.execute(sqlalchemy.text(request.sql))
+            stmt = sqlalchemy.text(request.sql).bindparams(**(request.params or {}))
+            result = conn.execute(stmt)
             columns = result.keys()
             rows = [dict(zip(columns, row)) for row in result]
         end = time.time()
