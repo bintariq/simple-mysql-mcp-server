@@ -1,0 +1,11 @@
+{
+    "id": "simple-mysql-mcp-server",
+    "name": "MySQL MCP Server",
+    "description": "Query any local or Docker-based MySQL DB using GitHub Copilot or MCP.so",
+    "language": "python",
+    "host": "http://localhost:8081",
+    "entry": "main.py",
+    "keywords": ["mysql", "mcp", "copilot", "sql", "fastapi"],
+    "version": "0.1.0"
+  }
+  
